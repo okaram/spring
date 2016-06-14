@@ -1,12 +1,13 @@
 Spring Boot Cheatsheet
 
 ## Gradle dependencies
-
-+ compile("org.springframework.boot:spring-boot-starter-web")
-+ compile("org.springframework.boot:spring-boot-starter-actuator")
-+ compile("org.springframework.boot:spring-boot-starter-data-jpa")
-+ compile("com.h2database:h2")
-+ testCompile('org.springframework.boot:spring-boot-starter-test')
+```java
+compile("org.springframework.boot:spring-boot-starter-web")
+compile("org.springframework.boot:spring-boot-starter-actuator")
+compile("org.springframework.boot:spring-boot-starter-data-jpa")
+compile("com.h2database:h2")
+testCompile('org.springframework.boot:spring-boot-starter-test')
+```
 
 ## Controllers (actuator)
 ```java
@@ -28,7 +29,24 @@ public class HelloWorldController {
 	}
 }
 ```
+
 ## Entities (JPA)
+```java
+import javax.persistence.*;
+```
+
+### Example
+```java
+@Entity
+@ToString
+public class User {        
+	@Id 			        
+	@GeneratedValue 
+	Long id;
+
+	String username, password;
+}
+```
 
 ## Repositories (JPA)
 
