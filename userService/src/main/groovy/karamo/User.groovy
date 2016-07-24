@@ -10,5 +10,19 @@ public class User {
 	@GeneratedValue 
 	Long id;
 
-	String username, password;
+	String username, hashedPassword;
+
+	void setPassword(String password) {
+		hashedPassword=hashPassword(password);
+	}
+
+	public boolean checkPassword(String password)
+	{
+		return hashPassword(password).equals(hashedPassword);
+	}
+
+	static String hashPassword(String password)
+	{
+		return password; //eventually, hash :)
+	}
 }

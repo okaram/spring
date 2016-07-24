@@ -1,0 +1,15 @@
+apply plugin: 'java'
+apply plugin: 'application'
+apply plugin: 'groovy'
+
+mainClassName='okaram.App1'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	compile 'org.springframework:spring-context:4.3.0.RELEASE'
+	compile 'org.codehaus.groovy:groovy-all:2.4.7'
+}
+
