@@ -16,6 +16,9 @@ public class UserController {
 	@RequestMapping("/addUser")                        
 	public @ResponseBody addUser(@RequestParam("username") String username, @RequestParam("password") String password)
 	{
+		List<User> users=repo.findByUsername(username);
+		if(!users.isEmpty)
+			throw new IllegalArgument
 		User u=new User();
 		u.username=username;
 		u.setPassword(password);
@@ -27,7 +30,7 @@ public class UserController {
 	public @ResponseBody validateLogin(@RequestParam("username") String username, @RequestParam("password") String password)
 	{
 		List<User> u=repo.findByUsername(username);
-		return !u.isEmpty() && u[0].password==password;	
+		return !u.isEmpty() && u[0].checkPassword(password);	
 	}
 
 }
