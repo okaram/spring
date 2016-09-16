@@ -21,7 +21,7 @@ public class User {
 		return hashPassword(password).equals(hashedPassword);
 	}
 
-	static String hashPassword(String password)
+	static String getHashedPassword(String password)
 	{
 		return password; //eventually, hash :)
 	}

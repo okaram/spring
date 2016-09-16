@@ -7,30 +7,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
 @Controller
 @RequestMapping("user")
+@groovy.transform.CompileStatic
 public class UserController {
 	@Autowired
-	UserRepository repo;
+	UserService userService;
 
 	@RequestMapping("/addUser")                        
 	public @ResponseBody addUser(@RequestParam("username") String username, @RequestParam("password") String password)
 	{
-		List<User> users=repo.findByUsername(username);
-		if(!users.isEmpty)
-			throw new IllegalArgument
-		User u=new User();
-		u.username=username;
-		u.setPassword(password);
-
-		repo.save(u);
+		userService.addUser(username,password);
 	}	
 	
 	@RequestMapping("/validateLogin")
 	public @ResponseBody validateLogin(@RequestParam("username") String username, @RequestParam("password") String password)
 	{
-		List<User> u=repo.findByUsername(username);
-		return !u.isEmpty() && u[0].checkPassword(password);	
+		return userService.validateLogin(username,password);
 	}
 
 }
