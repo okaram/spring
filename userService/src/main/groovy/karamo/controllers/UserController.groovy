@@ -1,10 +1,10 @@
-package karamo
+package karamo.controllers
 
+import karamo.serviceInterfaces.UserService
 import org.springframework.beans.factory.annotation.Autowired
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -13,26 +13,18 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @groovy.transform.CompileStatic
 public class UserController {
 	@Autowired
-	UserRepository repo;
+	UserService userService;
 
 	@RequestMapping("/addUser")                        
 	public @ResponseBody addUser(@RequestParam("username") String username, @RequestParam("password") String password)
 	{
-		List<User> users=repo.findByUsername(username);
-		if(!users.isEmpty())
-			throw new java.lang.IllegalArgumentException("That user already exists");
-		User u=new User();
-		u.username=username;
-		u.setPassword(password);
-
-		repo.save(u);
+		userService.addUser(username,password);
 	}	
 	
 	@RequestMapping("/validateLogin")
 	public @ResponseBody boolean validateLogin(@RequestParam("username") String username, @RequestParam("password") String password)
 	{
-		List<User> u=repo.findByUsername(username);
-		return !u.isEmpty() && u[0].checkPassword(password);	
+		return userService.validateLogin(username,password);
 	}
 
 }

@@ -1,4 +1,4 @@
-package karamo;
+package karamo.serviceInterfaces;
 
 public interface UserService {
 

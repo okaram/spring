@@ -1,4 +1,4 @@
-package karamo;
+package karamo.db;
 
 import javax.persistence.*;
 import groovy.transform.ToString
@@ -6,11 +6,9 @@ import groovy.transform.ToString
 @Entity
 @ToString
 public class User {
-	@Id 
-	@GeneratedValue 
-	Long id;
-
-	String username, hashedPassword;
+	@Id
+	String username;
+	String hashedPassword;
 
 	void setPassword(String password) {
 		hashedPassword=hashPassword(password);

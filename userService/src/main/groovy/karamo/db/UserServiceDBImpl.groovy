@@ -1,4 +1,6 @@
-package karamo;
+package karamo.db
+
+import karamo.serviceInterfaces.UserService;
 import org.springframework.beans.factory.annotation.Autowired
 
 public class UserServiceDBImpl implements UserService {

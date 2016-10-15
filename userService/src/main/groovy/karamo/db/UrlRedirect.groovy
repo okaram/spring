@@ -1,16 +1,22 @@
-package karamo;
+package karamo.db;
 
 import javax.persistence.*;
 import groovy.transform.ToString
+import groovy.transform.CompileStatic;
 
 @Entity
+@CompileStatic
 @ToString
 public class UrlRedirect {
 	@Id 
 	@GeneratedValue 
-	Long id;
+	long realId;
 
-    Long userId;
+	String getId() {
+		return realId.toString();
+	}
+
+    String userId;
     String url;
 
 	Long numVisits;
